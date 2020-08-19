@@ -2,7 +2,7 @@
 
 ## Description
 
-Module for INFOnline 
+Module for the INFOnline SDK. 
 
 ## Accessing the infonline Module
 
@@ -12,7 +12,7 @@ To access this module from JavaScript, you would do the following:
 const IOL = require('ti.infonline');
 ```
 
-The infonline variable is a reference to the Module object.
+The infonline variable is a reference to the module object.
 
 ## Reference
 
@@ -20,15 +20,9 @@ The infonline variable is a reference to the Module object.
 
 #### Event States
 Event Type specific states with the following naming convention
-- STATE_VIEW_APPEARED
+- STATE_VIEW_APPEARED | STATE_VIEW_REFRESHED | STATE_VIEW_DISAPPEARED
 
 ## Functions
-
-#### infonline.startSession()
-Start a session. You have to set the offer identifier before calling this function!
-
-#### infonline.stopSession()
-Stops a previously initiated session.
 
 #### infonline.logEvent(event)
 Log a single event. Events will be queued until configured threshold is reached.
@@ -49,13 +43,10 @@ IOL.logEvent(event);
 The parameters are:
 
 | Parameter  | Meaning |
-| ------------- | ------------- |
-| type  | a state matching the event. See EvenState constants for supported values  |
-| category  | code as assigned in/by INFOnline portal. Unassigned codes will lead to errors/warnings in the backend |
-| comment  | a comment you (maybe) can define  |
-
-#### infonline.sendLoggedEvents()
-Forced send of all queued events
+| ---------- | ------- |
+| type  | A state matching the event. See EvenState constants for supported values  |
+| category  | Code / category as assigned in/by INFOnline portal. Unassigned codes will lead to errors/warnings in the backend |
+| comment  | A comment you (maybe) can define  |
 
 #### infonline.optOut()
 The user must have the option to opt out. If you don't want to handle the value in your own code,
@@ -64,7 +55,8 @@ just call the optOut() function and the logEvent / startSession functions will r
 #### infonline.optIn()
 Re enable event logging after having called optOut()
 
-###Properties
+### Properties
+
 #### infonline.offerIdentifier
 The INFOnline provided offer identifier. 
 NOTE: You have to set it, before calling startSession()!
