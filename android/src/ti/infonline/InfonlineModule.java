@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.widget.Toast;
 
 import de.infonline.lib.IOLEvent;
+import de.infonline.lib.IOLGameEvent;
 import de.infonline.lib.IOLSessionPrivacySetting;
 import de.infonline.lib.IOLSessionType;
 import de.infonline.lib.IOLSession;
@@ -63,12 +64,23 @@ public class InfonlineModule extends KrollModule {
 		IOLSession.getSessionForType(IOLSessionType.SZM).logEvent(event);
 	}
 
+	@Kroll.method
+	public void logTestEvent() {
+		IOLGameEvent event = new IOLGameEvent(IOLGameEvent.IOLGameEventType.Action);
+		event.setCategory("category?");
+		event.setComment("optionalComment");
+
+		IOLSession.getSessionForType(IOLSessionType.SZM).logEvent(event);
+	}
+
 	// Methods
 	@Kroll.method
 	public void startSession() {
 		String KEY = "IVW_OFFER_ID_ANDROID";
 		TiProperties props = TiApplication.getInstance().getAppProperties();
 		String offerId = props.hasProperty(KEY) ? props.getString(KEY, "") : this.offerIdentifier;
+
+		IOLSession.init(TiApplication.getAppRootOrCurrentActivity().getApplicationContext());
 
 		if (offerId != null) {
 			IOLSession.getSessionForType(IOLSessionType.SZM).initIOLSession(offerId, false, IOLSessionPrivacySetting.LIN);
