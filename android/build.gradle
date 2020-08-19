@@ -1,0 +1,4 @@
+
+dependencies {
+    implementation files('../../libs/infonlinelib_2.1.2.aar')
+}

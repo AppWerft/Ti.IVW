@@ -10,7 +10,6 @@
 #import "TiHost.h"
 #import "TiUtils.h"
 
-
 static NSString* offerId = @"iamtest";
 static NSString* customerData = @"";
 
@@ -20,26 +19,14 @@ static bool sessionStarted = NO;
 
 #pragma mark Internal
 
-// This is generated for your module, please do not change it
 - (id)moduleGUID
 {
 	return @"a98f00c4-5edc-4f73-aa1b-27232e9fcdf7";
 }
 
-// This is generated for your module, please do not change it
 - (NSString *)moduleId
 {
 	return @"ti.infonline";
-}
-
-#pragma mark Lifecycle
-
-- (void)startup
-{
-	// This method is called when the module is first loaded
-	// You *must* call the superclass
-	[super startup];
-	NSLog(@"[DEBUG] %@ loaded",self);
 }
 
 #pragma constants
@@ -60,8 +47,7 @@ MAKE_SYSTEM_UINT(EVENT_UPLOAD,IOLEventTypeUpload);
 MAKE_SYSTEM_UINT(EVENT_DOCUMENT,IOLEventTypeDocument);
 MAKE_SYSTEM_UINT(EVENT_HARDWARE_BUTTON,IOLEventTypeHardwareButton);
 MAKE_SYSTEM_UINT(EVENT_GESTURE,IOLEventTypeGesture);
-
-
+MAKE_SYSTEM_UINT(EVENT_WATCH_KIT_INTERFACE, IOLEventTypeWatchKitInterface);
 
 MAKE_SYSTEM_STR(STATE_VIEW_APPEARED, IOLViewAppeared)
 MAKE_SYSTEM_STR(STATE_VIEW_REFRESHED, IOLViewRefreshed)
@@ -126,15 +112,15 @@ MAKE_SYSTEM_STR(STATE_UPLOAD_FAILED, IOLUploadFailed)
 MAKE_SYSTEM_STR(STATE_UPLOAD_CANCELLED, IOLUploadCancelled)
 MAKE_SYSTEM_STR(STATE_UPLOAD_SUCCEEDED, IOLUploadSucceeded)
 
-
 MAKE_SYSTEM_STR(STATE_AD_OPEN, IOLAdvertisementOpen)
 MAKE_SYSTEM_STR(STATE_AD_CLOSE, IOLAdvertisementClose)
 
 MAKE_SYSTEM_STR(STATE_ORIENTATION_CHANGED, IOLDeviceOrientationChanged)
 
+MAKE_SYSTEM_STR(STATE_WATCH_KIT_INTERFACE_ACTIVATED, IOLWatchKitInterfaceActivate)
+MAKE_SYSTEM_STR(STATE_WATCH_KIT_INTERFACE_DEACTIVATED, IOLWatchKitInterfaceDeactivated)
 
 #pragma Public APIs
-
 
 - (void)startSession:(id)args {
     
@@ -149,13 +135,13 @@ MAKE_SYSTEM_STR(STATE_ORIENTATION_CHANGED, IOLDeviceOrientationChanged)
 }
 
 - (void)stopSession:(id)args {
-    if(sessionStarted) {
+    if (sessionStarted) {
         [[IOLSession defaultSession] terminateSession];
     }
 }
 
 - (void)sendLoggedEvents:(id)args {
-    if(sessionStarted) {
+    if (sessionStarted) {
         [[IOLSession defaultSession] sendLoggedEvents];
     }
 }
@@ -187,11 +173,10 @@ MAKE_SYSTEM_STR(STATE_ORIENTATION_CHANGED, IOLDeviceOrientationChanged)
     NSString* category = [TiUtils stringValue:[args objectAtIndex:kArgCategory] ];
     NSString* comment = [TiUtils stringValue:[args objectAtIndex:kArgComment] ];
 
-    [[IOLSession defaultSession]
-       logEventWithType:event
-       state:state
-       category:category
-       comment:comment];
+    [[IOLSession defaultSession] logEventWithType:event
+                                            state:state
+                                         category:category
+                                          comment:comment];
 }
 
 - (id)customerData
@@ -222,12 +207,10 @@ MAKE_SYSTEM_STR(STATE_ORIENTATION_CHANGED, IOLDeviceOrientationChanged)
 
 - (void) logTestEvent:(id)args {
     [[IOLSession defaultSession] setCustomerData:@"valueFromArg"];
-    [[IOLSession defaultSession]
-     logEventWithType:IOLEventTypeGame
-     state:IOLGameAction
-     category:@"category?"
-     comment:@"optionalComment"];
+    [[IOLSession defaultSession] logEventWithType:IOLEventTypeGame
+                                            state:IOLGameAction
+                                         category:@"category?"
+                                          comment:@"optionalComment"];
 }
-
 
 @end
