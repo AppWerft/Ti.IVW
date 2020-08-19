@@ -6,7 +6,6 @@
  */
 
 #import "TiModule.h"
-#import <INFOnlineLibrary/INFOnlineLibrary.h>
 
 @interface TiInfonlineModule : TiModule {
 
