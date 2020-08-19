@@ -1,8 +1,7 @@
 package ti.infonline;
 
-import org.appcelerator.kroll.KrollProxy;
+import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.titanium.TiBlob;
 
 import de.infonline.lib.IOLViewEvent;
 
@@ -11,25 +10,32 @@ public class InfonlineViewEventProxy extends InfonlineEventProxy {
 
     public IOLViewEvent event;
 
-    public InfonlineViewEventProxy() {
-        super();
+    @Override
+    public void handleCreationDict(KrollDict dict) {
+        super.handleCreationDict(dict);
 
-        IOLViewEvent.IOLViewEventType type = IOLViewEvent.IOLViewEventType.Appeared;
+        int type = dict.getInt("type");
+        String category = dict.getString("category");
+        String comment = dict.getString("comment");
 
-        switch (this.properties.getInt("type")) {
+        IOLViewEvent.IOLViewEventType nativeType = IOLViewEvent.IOLViewEventType.Appeared;
+
+        switch (type) {
             case 0: {
-                type = IOLViewEvent.IOLViewEventType.Appeared;
+                nativeType = IOLViewEvent.IOLViewEventType.Appeared;
+                break;
             }
             case 1: {
-                type = IOLViewEvent.IOLViewEventType.Disappeared;
+                nativeType = IOLViewEvent.IOLViewEventType.Refreshed;
+                break;
             }
             case 2: {
-                type = IOLViewEvent.IOLViewEventType.Refreshed;
+                nativeType = IOLViewEvent.IOLViewEventType.Disappeared;
             }
         }
 
-        event = new IOLViewEvent(type);
-        event.setCategory(this.properties.getString("category"));
-        event.setComment(this.properties.getString("comment"));
+        event = new IOLViewEvent(nativeType);
+        event.setCategory(category);
+        event.setComment(comment);
     }
 }

@@ -11,7 +11,6 @@ package ti.infonline;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.annotations.Kroll.module;
-import org.appcelerator.kroll.annotations.Kroll.constant;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.TiApplication;
 
@@ -24,18 +23,6 @@ import de.infonline.lib.IOLSessionType;
 import de.infonline.lib.IOLSession;
 
 import org.appcelerator.titanium.TiProperties;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 
 @module(name = "Infonline", id = "ti.infonline")
 public class InfonlineModule extends KrollModule {
@@ -43,115 +30,11 @@ public class InfonlineModule extends KrollModule {
 	// Standard Debugging variables
 	private static final String LCAT = "IVWMod";
 
-	private static final String CONFIG_FILE_NAME = "szm_infonline_lib_config";
-	private boolean isSessionopened = false;
+	private boolean isSessionOpened = false;
+	private String customerData;
+	private String offerIdentifier;
 	private boolean isOptIn = false;
 	private boolean dbg = false;
-
-	@constant
-	public static final String EVENT_VIEW = "view";
-	@constant
-	public static final String STATE_VIEW_APPEARED = "appeared";
-	@constant
-	public static final String STATE_VIEW_DISAPPEARED = "disappeared";
-	@constant
-	public static final String STATE_VIEW_REFRESHED = "refreshed";
-
-	@constant
-	public static final String EVENT_ADVERTISEMENT = "advertisement";
-	@constant
-	public static final String STATE_ADVERTISEMENT_OPEN = "open";
-	@constant
-	public static final String STATE_ADVERTISEMENT_CLOSE = "close";
-
-	@constant
-	public static final String EVENT_LOGIN = "login";
-	@constant
-	public static final String STATE_LOGIN_SUCCEEDED = "succeeded";
-	@constant
-	public static final String STATE_LOGIN_FAILED = "failed";
-	@constant
-	public static final String STATE_LOGIN_LOGOUT = "logout";
-
-	@constant
-	public static final String EVENT_IAP = "iap";
-	@constant
-	public static final String STATE_IAP_STARTED = "started";
-	@constant
-	public static final String STATE_IAP_FINISHED = "finished";
-	@constant
-	public static final String STATE_IAP_CANCELLED = "cancelled";
-
-	@constant
-	public static final String EVENT_DATA = "data";
-	@constant
-	public static final String STATE_DATA_CANCELLED = "cancelled";
-	@constant
-	public static final String STATE_DATA_REFRESH = "refresh";
-	@constant
-	public static final String STATE_DATA_SUCCEEDED = "succeeded";
-	@constant
-	public static final String STATE_DATA_FAILED = "failed";
-
-	@constant
-	public static final String EVENT_DOCUMENT = "document";
-	@constant
-	public static final String STATE_DOCUMENT_OPEN = "open";
-	@constant
-	public static final String STATE_DOCUMENT_EDIT = "edit";
-	@constant
-	public static final String STATE_DOCUMENT_CLOSE = "close";
-
-	@constant
-	public static final String EVENT_DOWNLOAD = "download";
-	@constant
-	public static final String STATE_DOWNLOAD_CANCELLED = "cancelled";
-	@constant
-	public static final String STATE_DOWNLOAD_START = "start";
-	@constant
-	public static final String STATE_DOWNLOAD_FAILED = "failed";
-	@constant
-	public static final String STATE_DOWNLOAD_SUCCEDED = "succeeded";
-
-	@constant
-	public static final String EVENT_GAME = "game";
-	@constant
-	public static final String STATE_GAME_ACTION = "action";
-	@constant
-	public static final String STATE_GAME_STARTED = "started";
-	@constant
-	public static final String STATE_GAME_FINISHED = "finished";
-	@constant
-	public static final String STATE_GAME_WON = "won";
-	@constant
-	public static final String STATE_GAME_LOST = "lost";
-	@constant
-	public static final String STATE_GAME_NEWHIGHSCORE = "newhighscore";
-	@constant
-	public static final String STATE_GAME_NewAchievement = "newachievement";
-
-	@Kroll.onAppCreate
-	public static void onAppCreate(TiApplication app) {
-		String KEY = "IVW_OFFER_ID_ANDROID";
-		TiProperties props = TiApplication.getInstance().getAppProperties();
-
-		if (props.hasProperty(KEY)) {
-			String offerId= props.getString(KEY, "");
-			IOLSession.getSessionForType(IOLSessionType.SZM).initIOLSession(offerId, false, IOLSessionPrivacySetting.LIN); // TODO: Is LIN ok here?
-			Log.d(LCAT,
-					"****************************************************************\n"
-					+ "IOLSession started with: " + offerId +
-					"\n****************************************************************");
-		} else {
-			Toast.makeText(app.getApplicationContext(), "The mandatory offerId is missing.\nPlease read log",
-		    Toast.LENGTH_LONG).show();
-			Log.e(LCAT,
-					"***************************************************************************\n"
-					+ "You need to add a property with name 'IVW_OFFER_ID_ANDROID' to tiapp.xml"+
-					"  <property name=\"" + KEY + "\" type=\"string\">###YOUR_KEY###</property>" +		
-					"\n***************************************************************************");
-		}	
-	}
 
 	@Kroll.method
 	public void optIn() {
@@ -173,7 +56,7 @@ public class InfonlineModule extends KrollModule {
 	public void logEvent(Object _event) {
 		IOLEvent event = ((InfonlineEventProxy) _event).event;
 
-		if (!isSessionopened) {
+		if (!isSessionOpened) {
 			IOLSession.getSessionForType(IOLSessionType.SZM).startSession();
 		}
 
@@ -183,15 +66,36 @@ public class InfonlineModule extends KrollModule {
 	// Methods
 	@Kroll.method
 	public void startSession() {
+		String KEY = "IVW_OFFER_ID_ANDROID";
+		TiProperties props = TiApplication.getInstance().getAppProperties();
+		String offerId = props.hasProperty(KEY) ? props.getString(KEY, "") : this.offerIdentifier;
+
+		if (offerId != null) {
+			IOLSession.getSessionForType(IOLSessionType.SZM).initIOLSession(offerId, false, IOLSessionPrivacySetting.LIN);
+			Log.d(LCAT,
+					"****************************************************************\n"
+							+ "IOLSession started with: " + offerId +
+							"\n****************************************************************");
+		} else {
+			Toast.makeText(TiApplication.getAppCurrentActivity(), "The mandatory offerId is missing.\nPlease read log",
+					Toast.LENGTH_LONG).show();
+			Log.e(LCAT,
+					"***************************************************************************\n"
+							+ "You need to add a property with name 'IVW_OFFER_ID_ANDROID' to tiapp.xml"+
+							"  <property name=\"" + KEY + "\" type=\"string\">###YOUR_KEY###</property>" +
+							"  or set the \"offerIdentifier\" property of this module!" +
+							"\n***************************************************************************");
+		}
+
 		IOLSession.getSessionForType(IOLSessionType.SZM).startSession();
-		isSessionopened = true;
+		isSessionOpened = true;
 	}
 
 	// Methods
 	@Kroll.method
 	public void stopSession() {
 		IOLSession.getSessionForType(IOLSessionType.SZM).terminateSession();
-		isSessionopened = false;
+		isSessionOpened = false;
 	}
 
 	@Kroll.method
@@ -224,8 +128,15 @@ public class InfonlineModule extends KrollModule {
 	}
 
 	@Kroll.setProperty
+	@Kroll.method
 	public void setCostumerData(String data) {
-		// IOLSession.setCustomerData(data);
+		customerData = data;
+	}
+
+	@Kroll.setProperty
+	@Kroll.method
+	public void setOfferIdentifier(String identifier) {
+		offerIdentifier = identifier;
 	}
 
 	@Kroll.method
