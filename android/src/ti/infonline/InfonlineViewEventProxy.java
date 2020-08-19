@@ -2,10 +2,11 @@ package ti.infonline;
 
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.annotations.Kroll;
+import org.appcelerator.kroll.common.Log;
 
 import de.infonline.lib.IOLViewEvent;
 
-@Kroll.proxy(parentModule = InfonlineModule.class)
+@Kroll.proxy(name = "ViewEvent", creatableInModule = InfonlineModule.class)
 public class InfonlineViewEventProxy extends InfonlineEventProxy {
 
     public IOLViewEvent event;
@@ -34,8 +35,8 @@ public class InfonlineViewEventProxy extends InfonlineEventProxy {
             }
         }
 
-        event = new IOLViewEvent(nativeType);
-        event.setCategory(category);
-        event.setComment(comment);
+        this.event = new IOLViewEvent(nativeType);
+        this.event.setCategory(category);
+        this.event.setComment(comment);
     }
 }

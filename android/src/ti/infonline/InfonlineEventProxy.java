@@ -5,7 +5,7 @@ import org.appcelerator.kroll.annotations.Kroll;
 
 import de.infonline.lib.IOLEvent;
 
-@Kroll.proxy(parentModule = InfonlineModule.class)
+@Kroll.proxy(name = "Event", creatableInModule = InfonlineModule.class)
 public class InfonlineEventProxy extends KrollProxy {
     public IOLEvent event;
 }

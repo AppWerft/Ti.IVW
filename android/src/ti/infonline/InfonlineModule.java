@@ -8,6 +8,7 @@
  */
 package ti.infonline;
 
+import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.annotations.Kroll.module;
@@ -37,6 +38,15 @@ public class InfonlineModule extends KrollModule {
 	private boolean isOptIn = false;
 	private boolean dbg = false;
 
+	@Kroll.constant
+	public static final int STATE_VIEW_APPEARED = 0;
+
+	@Kroll.constant
+	public static final int STATE_VIEW_REFRESHED = 1;
+
+	@Kroll.constant
+	public static final int STATE_VIEW_DISAPPEARED = 2;
+
 	@Kroll.method
 	public void optIn() {
 		isOptIn = true;
@@ -55,7 +65,7 @@ public class InfonlineModule extends KrollModule {
 
 	@Kroll.method
 	public void logEvent(Object _event) {
-		IOLEvent event = ((InfonlineEventProxy) _event).event;
+		IOLEvent event = ((InfonlineViewEventProxy) _event).event;
 
 		if (!isSessionOpened) {
 			IOLSession.getSessionForType(IOLSessionType.SZM).startSession();
