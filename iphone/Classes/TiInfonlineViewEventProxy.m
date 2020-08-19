@@ -5,10 +5,10 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
-#import "TiInfoonlineViewEventProxy.h"
+#import "TiInfonlineViewEventProxy.h"
 #import "TiUtils.h"
 
-@implementation TiInfoonlineViewEventProxy
+@implementation TiInfonlineViewEventProxy
 
 - (id)_initWithPageContext:(id<TiEvaluator>)context
 {

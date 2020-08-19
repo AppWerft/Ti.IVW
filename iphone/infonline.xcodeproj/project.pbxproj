@@ -26,10 +26,10 @@
 		24DE9E1111C5FE74003F90F6 /* TiInfonlineModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* TiInfonlineModuleAssets.h */; };
 		24DE9E1211C5FE74003F90F6 /* TiInfonlineModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* TiInfonlineModuleAssets.m */; };
 		3A4B276224ED1973001E54EC /* INFOnlineLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4B276124ED1973001E54EC /* INFOnlineLibrary.framework */; };
-		3A4B276924ED1F54001E54EC /* TiInfoonlineEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B276724ED1F53001E54EC /* TiInfoonlineEventProxy.m */; };
-		3A4B276A24ED1F54001E54EC /* TiInfoonlineEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4B276824ED1F53001E54EC /* TiInfoonlineEventProxy.h */; };
-		3A4B276E24ED20A2001E54EC /* TiInfoonlineViewEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B276C24ED20A2001E54EC /* TiInfoonlineViewEventProxy.m */; };
-		3A4B276F24ED20A2001E54EC /* TiInfoonlineViewEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4B276D24ED20A2001E54EC /* TiInfoonlineViewEventProxy.h */; };
+		3A4B276924ED1F54001E54EC /* TiInfonlineEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B276724ED1F53001E54EC /* TiInfonlineEventProxy.m */; };
+		3A4B276A24ED1F54001E54EC /* TiInfonlineEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4B276824ED1F53001E54EC /* TiInfonlineEventProxy.h */; };
+		3A4B276E24ED20A2001E54EC /* TiInfonlineViewEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B276C24ED20A2001E54EC /* TiInfonlineViewEventProxy.m */; };
+		3A4B276F24ED20A2001E54EC /* TiInfonlineViewEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4B276D24ED20A2001E54EC /* TiInfonlineViewEventProxy.h */; };
 		3ACC4C5F24E92B49008B265F /* TiInfonlineModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACC4C5E24E92B49008B265F /* TiInfonlineModule.h */; };
 		AA747D9F0F9514B9006C5449 /* TiInfonline_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiInfonline_Prefix.pch */; };
 /* End PBXBuildFile section */
@@ -50,10 +50,10 @@
 		24DE9E0F11C5FE74003F90F6 /* TiInfonlineModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineModuleAssets.h; path = Classes/TiInfonlineModuleAssets.h; sourceTree = "<group>"; };
 		24DE9E1011C5FE74003F90F6 /* TiInfonlineModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfonlineModuleAssets.m; path = Classes/TiInfonlineModuleAssets.m; sourceTree = "<group>"; };
 		3A4B276124ED1973001E54EC /* INFOnlineLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = INFOnlineLibrary.framework; path = platform/INFOnlineLibrary.framework; sourceTree = "<group>"; };
-		3A4B276724ED1F53001E54EC /* TiInfoonlineEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfoonlineEventProxy.m; path = Classes/TiInfoonlineEventProxy.m; sourceTree = "<group>"; };
-		3A4B276824ED1F53001E54EC /* TiInfoonlineEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfoonlineEventProxy.h; path = Classes/TiInfoonlineEventProxy.h; sourceTree = "<group>"; };
-		3A4B276C24ED20A2001E54EC /* TiInfoonlineViewEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfoonlineViewEventProxy.m; path = Classes/TiInfoonlineViewEventProxy.m; sourceTree = "<group>"; };
-		3A4B276D24ED20A2001E54EC /* TiInfoonlineViewEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfoonlineViewEventProxy.h; path = Classes/TiInfoonlineViewEventProxy.h; sourceTree = "<group>"; };
+		3A4B276724ED1F53001E54EC /* TiInfonlineEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfonlineEventProxy.m; path = Classes/TiInfonlineEventProxy.m; sourceTree = "<group>"; };
+		3A4B276824ED1F53001E54EC /* TiInfonlineEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineEventProxy.h; path = Classes/TiInfonlineEventProxy.h; sourceTree = "<group>"; };
+		3A4B276C24ED20A2001E54EC /* TiInfonlineViewEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfonlineViewEventProxy.m; path = Classes/TiInfonlineViewEventProxy.m; sourceTree = "<group>"; };
+		3A4B276D24ED20A2001E54EC /* TiInfonlineViewEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineViewEventProxy.h; path = Classes/TiInfonlineViewEventProxy.h; sourceTree = "<group>"; };
 		3ACC4C5E24E92B49008B265F /* TiInfonlineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineModule.h; path = Classes/TiInfonlineModule.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiInfonline_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiInfonline_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		D276B2CB1F8290DC004C1436 /* INFOnlineLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = INFOnlineLibrary.bundle; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		3A4B277024ED2198001E54EC /* View Event */ = {
 			isa = PBXGroup;
 			children = (
-				3A4B276D24ED20A2001E54EC /* TiInfoonlineViewEventProxy.h */,
-				3A4B276C24ED20A2001E54EC /* TiInfoonlineViewEventProxy.m */,
+				3A4B276D24ED20A2001E54EC /* TiInfonlineViewEventProxy.h */,
+				3A4B276C24ED20A2001E54EC /* TiInfonlineViewEventProxy.m */,
 			);
 			name = "View Event";
 			sourceTree = "<group>";
@@ -142,8 +142,8 @@
 		3A4B277224ED2656001E54EC /* Ti Base Event */ = {
 			isa = PBXGroup;
 			children = (
-				3A4B276824ED1F53001E54EC /* TiInfoonlineEventProxy.h */,
-				3A4B276724ED1F53001E54EC /* TiInfoonlineEventProxy.m */,
+				3A4B276824ED1F53001E54EC /* TiInfonlineEventProxy.h */,
+				3A4B276724ED1F53001E54EC /* TiInfonlineEventProxy.m */,
 			);
 			name = "Ti Base Event";
 			sourceTree = "<group>";
@@ -158,8 +158,8 @@
 				AA747D9F0F9514B9006C5449 /* TiInfonline_Prefix.pch in Headers */,
 				3ACC4C5F24E92B49008B265F /* TiInfonlineModule.h in Headers */,
 				24DE9E1111C5FE74003F90F6 /* TiInfonlineModuleAssets.h in Headers */,
-				3A4B276A24ED1F54001E54EC /* TiInfoonlineEventProxy.h in Headers */,
-				3A4B276F24ED20A2001E54EC /* TiInfoonlineViewEventProxy.h in Headers */,
+				3A4B276A24ED1F54001E54EC /* TiInfonlineEventProxy.h in Headers */,
+				3A4B276F24ED20A2001E54EC /* TiInfonlineViewEventProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,9 +231,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A4B276924ED1F54001E54EC /* TiInfoonlineEventProxy.m in Sources */,
+				3A4B276924ED1F54001E54EC /* TiInfonlineEventProxy.m in Sources */,
 				24DD6CFA1134B3F500162E58 /* TiInfonlineModule.m in Sources */,
-				3A4B276E24ED20A2001E54EC /* TiInfoonlineViewEventProxy.m in Sources */,
+				3A4B276E24ED20A2001E54EC /* TiInfonlineViewEventProxy.m in Sources */,
 				24DE9E1211C5FE74003F90F6 /* TiInfonlineModuleAssets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

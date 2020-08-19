@@ -7,8 +7,11 @@
 
 #import <INFOnlineLibrary/INFOnlineLibrary.h>
 #import "TiProxy.h"
-#import "TiInfoonlineEventProxy.h"
 
-@interface TiInfoonlineViewEventProxy : TiInfoonlineEventProxy
+@interface TiInfonlineEventProxy : TiProxy {
+  IOLEvent *_event;
+}
+
+- (IOLEvent *)event;
 
 @end

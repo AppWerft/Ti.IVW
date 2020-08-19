@@ -5,14 +5,10 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
-#import "TiInfoonlineEventProxy.h"
-#import "TiUtils.h"
+#import <INFOnlineLibrary/INFOnlineLibrary.h>
+#import "TiProxy.h"
+#import "TiInfonlineEventProxy.h"
 
-@implementation TiInfoonlineEventProxy
-
-- (IOLEvent *)event
-{
-  return _event;
-}
+@interface TiInfonlineViewEventProxy : TiInfonlineEventProxy
 
 @end

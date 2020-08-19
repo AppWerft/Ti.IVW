@@ -7,7 +7,7 @@
 
 #import <INFOnlineLibrary/INFOnlineLibrary.h>
 
-#import "TiInfoonlineEventProxy.h"
+#import "TiInfonlineEventProxy.h"
 #import "TiInfonlineModule.h"
 #import "TiBase.h"
 #import "TiHost.h"
@@ -164,9 +164,9 @@ MAKE_SYSTEM_PROP_DEPRECATED_REPLACED(STATE_ORIENTATION_CHANGED, 0, @"STATE_ORIEN
 // Infonline.logEvent(event);
 //
 - (void)logEvent:(id)event {
-    ENSURE_SINGLE_ARG(event, TiInfoonlineEventProxy);
+    ENSURE_SINGLE_ARG(event, TiInfonlineEventProxy);
     
-    IOLEvent *nativeEvent = [(TiInfoonlineEventProxy *)event event];
+    IOLEvent *nativeEvent = [(TiInfonlineEventProxy *)event event];
     [[IOLSession defaultSessionFor:IOLSessionTypeSZM] logEvent:nativeEvent];
 }
 
