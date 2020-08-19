@@ -10,119 +10,134 @@ package ti.infonline;
 
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
+import org.appcelerator.kroll.annotations.Kroll.module;
+import org.appcelerator.kroll.annotations.Kroll.constant;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.TiApplication;
 
 import android.app.Activity;
-import android.content.Context;
 import android.widget.Toast;
-import de.infonline.lib.IOLEventType;
+
+import de.infonline.lib.IOLEvent;
+import de.infonline.lib.IOLSessionPrivacySetting;
+import de.infonline.lib.IOLSessionType;
 import de.infonline.lib.IOLSession;
 
 import org.appcelerator.titanium.TiProperties;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-@Kroll.module(name = "Infonline", id = "ti.infonline")
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+
+@module(name = "Infonline", id = "ti.infonline")
 public class InfonlineModule extends KrollModule {
 
 	// Standard Debugging variables
 	private static final String LCAT = "IVWMod";
-	private Boolean isSessionopened = false;
-	private Boolean isOptIn = false;
-	private Boolean dbg = false;
 
-	@Kroll.constant
+	private static final String CONFIG_FILE_NAME = "szm_infonline_lib_config";
+	private boolean isSessionopened = false;
+	private boolean isOptIn = false;
+	private boolean dbg = false;
+
+	@constant
 	public static final String EVENT_VIEW = "view";
-	@Kroll.constant
+	@constant
 	public static final String STATE_VIEW_APPEARED = "appeared";
-	@Kroll.constant
+	@constant
 	public static final String STATE_VIEW_DISAPPEARED = "disappeared";
-	@Kroll.constant
+	@constant
 	public static final String STATE_VIEW_REFRESHED = "refreshed";
 
-	@Kroll.constant
+	@constant
 	public static final String EVENT_ADVERTISEMENT = "advertisement";
-	@Kroll.constant
+	@constant
 	public static final String STATE_ADVERTISEMENT_OPEN = "open";
-	@Kroll.constant
+	@constant
 	public static final String STATE_ADVERTISEMENT_CLOSE = "close";
 
-	@Kroll.constant
+	@constant
 	public static final String EVENT_LOGIN = "login";
-	@Kroll.constant
+	@constant
 	public static final String STATE_LOGIN_SUCCEEDED = "succeeded";
-	@Kroll.constant
+	@constant
 	public static final String STATE_LOGIN_FAILED = "failed";
-	@Kroll.constant
+	@constant
 	public static final String STATE_LOGIN_LOGOUT = "logout";
 
-	@Kroll.constant
+	@constant
 	public static final String EVENT_IAP = "iap";
-	@Kroll.constant
+	@constant
 	public static final String STATE_IAP_STARTED = "started";
-	@Kroll.constant
+	@constant
 	public static final String STATE_IAP_FINISHED = "finished";
-	@Kroll.constant
+	@constant
 	public static final String STATE_IAP_CANCELLED = "cancelled";
 
-	@Kroll.constant
+	@constant
 	public static final String EVENT_DATA = "data";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DATA_CANCELLED = "cancelled";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DATA_REFRESH = "refresh";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DATA_SUCCEEDED = "succeeded";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DATA_FAILED = "failed";
 
-	@Kroll.constant
+	@constant
 	public static final String EVENT_DOCUMENT = "document";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DOCUMENT_OPEN = "open";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DOCUMENT_EDIT = "edit";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DOCUMENT_CLOSE = "close";
 
-	@Kroll.constant
+	@constant
 	public static final String EVENT_DOWNLOAD = "download";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DOWNLOAD_CANCELLED = "cancelled";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DOWNLOAD_START = "start";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DOWNLOAD_FAILED = "failed";
-	@Kroll.constant
+	@constant
 	public static final String STATE_DOWNLOAD_SUCCEDED = "succeeded";
 
-	@Kroll.constant
+	@constant
 	public static final String EVENT_GAME = "game";
-	@Kroll.constant
+	@constant
 	public static final String STATE_GAME_ACTION = "action";
-	@Kroll.constant
+	@constant
 	public static final String STATE_GAME_STARTED = "started";
-	@Kroll.constant
+	@constant
 	public static final String STATE_GAME_FINISHED = "finished";
-	@Kroll.constant
+	@constant
 	public static final String STATE_GAME_WON = "won";
-	@Kroll.constant
+	@constant
 	public static final String STATE_GAME_LOST = "lost";
-	@Kroll.constant
+	@constant
 	public static final String STATE_GAME_NEWHIGHSCORE = "newhighscore";
-	@Kroll.constant
+	@constant
 	public static final String STATE_GAME_NewAchievement = "newachievement";
-
-	public InfonlineModule() {
-		super();
-	}
 
 	@Kroll.onAppCreate
 	public static void onAppCreate(TiApplication app) {
 		String KEY = "IVW_OFFER_ID_ANDROID";
 		TiProperties props = TiApplication.getInstance().getAppProperties();
+
 		if (props.hasProperty(KEY)) {
 			String offerId= props.getString(KEY, "");
-			IOLSession.initIOLSession(TiApplication.getInstance().getApplicationContext(), offerId, false);
+			IOLSession.getSessionForType(IOLSessionType.SZM).initIOLSession(offerId, false, IOLSessionPrivacySetting.LIN); // TODO: Is LIN ok here?
 			Log.d(LCAT,
 					"****************************************************************\n"
 					+ "IOLSession started with: " + offerId +
@@ -146,12 +161,12 @@ public class InfonlineModule extends KrollModule {
 	@Kroll.method
 	public void optOut() {
 		isOptIn = false;
-		IOLSession.terminateSession();
+		IOLSession.getSessionForType(IOLSessionType.SZM).terminateSession();
 	}
 
 	@Kroll.method
 	public void sendLoggedEvents() {
-		IOLSession.sendLoggedEvents();
+		IOLSession.getSessionForType(IOLSessionType.SZM).sendLoggedEvents();
 	}
 
 	@Kroll.method
@@ -185,27 +200,28 @@ public class InfonlineModule extends KrollModule {
 			Log.e(LCAT, "wrong type for event");
 
 		// Converting String event into internal type:
-		IOLEventType type = Utils.getEventTypeFromString(event + "." + state);
-		if (!isSessionopened)
-			IOLSession.startSession();
-		IOLSession.logEvent(type, code, comment);
+		IOLEvent type = InfonlineModule.getEventTypeFromString(event, state);
 
+		if (!isSessionopened) {
+			IOLSession.getSessionForType(IOLSessionType.SZM).startSession();
+		}
+
+		IOLSession.getSessionForType(IOLSessionType.SZM).logEvent(type);
+		// IOLSession.getSessionForType(IOLSessionType.SZM).logEvent(type, code, comment);
 	}
 
 	// Methods
 	@Kroll.method
 	public void startSession() {
-		IOLSession.startSession();
+		IOLSession.getSessionForType(IOLSessionType.SZM).startSession();
 		isSessionopened = true;
-
 	}
 
 	// Methods
 	@Kroll.method
 	public void stopSession() {
-		IOLSession.terminateSession();
+		IOLSession.getSessionForType(IOLSessionType.SZM).terminateSession();
 		isSessionopened = false;
-
 	}
 
 	@Kroll.method
@@ -239,26 +255,95 @@ public class InfonlineModule extends KrollModule {
 
 	@Kroll.setProperty
 	public void setCostumerData(String data) {
-		IOLSession.setCustomerData(data);
+		// IOLSession.setCustomerData(data);
 	}
 
 	@Kroll.method
 	public void onStart() {
-		IOLSession.onActivityStart();
+		// IOLSession.onActivityStart();
 	}
-	
+
 	@Kroll.method
 	public void onStop() {
-		IOLSession.onActivityStop();
+		// IOLSession.onActivityStop();
 	}
-	
+
 	public void onStart(Activity activity) {
 		super.onStart(activity);
-		IOLSession.onActivityStart();
+		// IOLSession.onActivityStart();
 	}
 
 	public void onStop(Activity activity) {
-		IOLSession.onActivityStop();
+		// IOLSession.onActivityStop();
 		super.onStop(activity);
+	}
+
+	private static HashMap<String, String[]> getConfigFile() throws IOException, ParseException, JSONException {
+		Activity currentActivity = TiApplication.getAppCurrentActivity();
+		int fileIdentifier = currentActivity.getResources().getIdentifier(CONFIG_FILE_NAME, "raw", currentActivity.getPackageName());
+		InputStream inputStream = currentActivity.getResources().openRawResource(fileIdentifier);
+
+		JSONObject file = (JSONObject) new JSONParser().parse(new InputStreamReader(inputStream, "UTF-8"));
+		JSONObject configuration = file.getJSONObject("configuration");
+		JSONObject activeEvents = configuration.getJSONObject("activeEvents");
+
+		Iterator<String> keys = activeEvents.keys();
+		HashMap<String, String[]> activeEventsMap = new HashMap<>();
+
+		// Map JSON array to String array
+		while(keys.hasNext()) {
+			String key = keys.next();
+			if (activeEvents.get(key) instanceof JSONArray) {
+				JSONArray states = (JSONArray) activeEvents.get(key);
+				activeEventsMap.put(key, InfonlineModule.toStringArray(states));
+			}
+		}
+
+		return activeEventsMap;
+	}
+
+	// CREDITS: https://stackoverflow.com/a/33421601/5537752
+	public static String[] toStringArray(JSONArray array) {
+		if (array==null)
+			return null;
+
+		String[] arr=new String[array.length()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = array.optString(i);
+		}
+
+		return arr;
+	}
+
+	static IOLEvent getEventTypeFromString(String eventName, String stateName) {
+		HashMap<String, String[]> configFile;
+
+		try {
+			configFile = InfonlineModule.getConfigFile();
+		} catch (JSONException jsonException) {
+			Log.e(LCAT, jsonException.getLocalizedMessage());
+			return null;
+		} catch (IOException ioException) {
+			Log.e(LCAT, ioException.getLocalizedMessage());
+			return null;
+		} catch (ParseException parseException) {
+			Log.e(LCAT, parseException.getLocalizedMessage());
+			return null;
+		}
+
+		if (configFile.containsKey(eventName) && Arrays.asList(configFile.get(eventName)).contains(stateName)) {
+			return new IOLEvent() {
+				@Override
+				public String getIdentifier() {
+					return eventName;
+				}
+				@Override
+				public String getState() {
+					return stateName;
+				}
+			};
+		}
+
+		return null;
 	}
 }
