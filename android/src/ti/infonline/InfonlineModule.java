@@ -170,44 +170,14 @@ public class InfonlineModule extends KrollModule {
 	}
 
 	@Kroll.method
-	public void logEvent(Object _event, Object _state, Object _code,
-			Object _comment) {
-		String event = "";
-		String state = "";
-		String code = "";
-		String comment = "";
-		if (!isOptIn)
-			return;
-		if (_event instanceof String) {
-			event = (String) _event;
-		} else
-			Log.e(LCAT, "wrong type for event");
-		if (_state instanceof String) {
-			state = (String) _state;
-		} else
-			Log.e(LCAT, "wrong type for state");
-		if (_code instanceof String) {
-			code = (String) _code;
-		} else
-			Log.e(LCAT, "wrong type for code");
-		if (_comment instanceof String) {
-			comment = (String) _comment;
-		} else
-			Log.e(LCAT, "wrong type for comment");
-		if (_event instanceof String) {
-			event = (String) _event;
-		} else
-			Log.e(LCAT, "wrong type for event");
-
-		// Converting String event into internal type:
-		IOLEvent type = InfonlineModule.getEventTypeFromString(event, state);
+	public void logEvent(Object _event) {
+		IOLEvent event = ((InfonlineEventProxy) _event).event;
 
 		if (!isSessionopened) {
 			IOLSession.getSessionForType(IOLSessionType.SZM).startSession();
 		}
 
-		IOLSession.getSessionForType(IOLSessionType.SZM).logEvent(type);
-		// IOLSession.getSessionForType(IOLSessionType.SZM).logEvent(type, code, comment);
+		IOLSession.getSessionForType(IOLSessionType.SZM).logEvent(event);
 	}
 
 	// Methods
@@ -276,74 +246,5 @@ public class InfonlineModule extends KrollModule {
 	public void onStop(Activity activity) {
 		// IOLSession.onActivityStop();
 		super.onStop(activity);
-	}
-
-	private static HashMap<String, String[]> getConfigFile() throws IOException, ParseException, JSONException {
-		Activity currentActivity = TiApplication.getAppCurrentActivity();
-		int fileIdentifier = currentActivity.getResources().getIdentifier(CONFIG_FILE_NAME, "raw", currentActivity.getPackageName());
-		InputStream inputStream = currentActivity.getResources().openRawResource(fileIdentifier);
-
-		JSONObject file = (JSONObject) new JSONParser().parse(new InputStreamReader(inputStream, "UTF-8"));
-		JSONObject configuration = file.getJSONObject("configuration");
-		JSONObject activeEvents = configuration.getJSONObject("activeEvents");
-
-		Iterator<String> keys = activeEvents.keys();
-		HashMap<String, String[]> activeEventsMap = new HashMap<>();
-
-		// Map JSON array to String array
-		while(keys.hasNext()) {
-			String key = keys.next();
-			if (activeEvents.get(key) instanceof JSONArray) {
-				JSONArray states = (JSONArray) activeEvents.get(key);
-				activeEventsMap.put(key, InfonlineModule.toStringArray(states));
-			}
-		}
-
-		return activeEventsMap;
-	}
-
-	// CREDITS: https://stackoverflow.com/a/33421601/5537752
-	public static String[] toStringArray(JSONArray array) {
-		if (array==null)
-			return null;
-
-		String[] arr=new String[array.length()];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = array.optString(i);
-		}
-
-		return arr;
-	}
-
-	static IOLEvent getEventTypeFromString(String eventName, String stateName) {
-		HashMap<String, String[]> configFile;
-
-		try {
-			configFile = InfonlineModule.getConfigFile();
-		} catch (JSONException jsonException) {
-			Log.e(LCAT, jsonException.getLocalizedMessage());
-			return null;
-		} catch (IOException ioException) {
-			Log.e(LCAT, ioException.getLocalizedMessage());
-			return null;
-		} catch (ParseException parseException) {
-			Log.e(LCAT, parseException.getLocalizedMessage());
-			return null;
-		}
-
-		if (configFile.containsKey(eventName) && Arrays.asList(configFile.get(eventName)).contains(stateName)) {
-			return new IOLEvent() {
-				@Override
-				public String getIdentifier() {
-					return eventName;
-				}
-				@Override
-				public String getState() {
-					return stateName;
-				}
-			};
-		}
-
-		return null;
 	}
 }
