@@ -9,9 +9,9 @@
 #import "TiProxy.h"
 
 @interface TiInfonlineEventProxy : TiProxy {
-  IOLEvent *_event;
+  __kindof IOLEvent *_event;
 }
 
-- (IOLEvent *)event;
+- (__kindof IOLEvent *)event;
 
 @end

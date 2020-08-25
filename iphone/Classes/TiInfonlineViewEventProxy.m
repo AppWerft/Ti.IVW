@@ -23,4 +23,13 @@
   return self;
 }
 
+- (NSString *)description
+{
+  NSUInteger type = [TiUtils intValue:[self valueForKey:@"type"]];
+  NSString *category = [TiUtils stringValue:[self valueForKey:@"category"]];
+  NSString *comment = [TiUtils stringValue:[self valueForKey:@"comment"]];
+
+  return [NSString stringWithFormat:@"Type = %li, Category = %@, Comment = %@", type, category, comment];
+}
+
 @end

@@ -121,11 +121,13 @@ MAKE_SYSTEM_PROP_DEPRECATED_REPLACED(STATE_ORIENTATION_CHANGED, 0, @"STATE_ORIEN
 #pragma Public APIs
 
 - (void)startSession:(id)args {
-    BOOL isOptOut = [[NSUserDefaults standardUserDefaults] boolForKey:@"IOLOptOut"];
+    BOOL isOptOut = [[NSUserDefaults standardUserDefaults] boolForKey:@"IOLOptOut"] ?: NO;
+
     if (!isOptOut) {
         // start only if not opted out
         [[IOLSession defaultSessionFor:IOLSessionTypeSZM] startSessionWithOfferIdentifier:offerId privacyType:IOLPrivacyTypeLIN];
         sessionStarted = YES;
+        NSLog(@"[INFO] INFOnline module session started!");
     }
 }
 
@@ -168,6 +170,8 @@ MAKE_SYSTEM_PROP_DEPRECATED_REPLACED(STATE_ORIENTATION_CHANGED, 0, @"STATE_ORIEN
     
     IOLEvent *nativeEvent = [(TiInfonlineEventProxy *)event event];
     [[IOLSession defaultSessionFor:IOLSessionTypeSZM] logEvent:nativeEvent];
+
+    NSLog(@"[INFO] Logging event (%@)", [event description]);
 }
 
 - (id)customerData
@@ -200,6 +204,8 @@ MAKE_SYSTEM_PROP_DEPRECATED_REPLACED(STATE_ORIENTATION_CHANGED, 0, @"STATE_ORIEN
 - (void) logTestEvent:(id)args {
     IOLEvent *event = [[IOLGameEvent alloc] initWithType:IOLGameEventTypeAction category:@"category?" comment:@"optionalComment"];
     [[IOLSession defaultSessionFor:IOLSessionTypeSZM] logEvent:event];
+
+    NSLog(@"[INFO] Logging test event (game event, category = category?, comment = optionalComment)!");
 }
 
 @end
