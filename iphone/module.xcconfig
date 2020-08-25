@@ -1,4 +1,4 @@
-//
+w//
 // PLACE ANY BUILD DEFINITIONS IN THIS FILE AND THEY WILL BE 
 // PICKED UP DURING THE APP BUILD FOR YOUR MODULE
 //
@@ -25,4 +25,4 @@
 //
 // IMPORTANT NOTE: always use $(inherited) in your overrides
 // 
-OTHER_LDFLAGS=$(inherited) -framework CoreTelephony -framework WatchKit -framework AdSupport -framework SystemConfiguration -framework WebKit
+OTHER_LDFLAGS=$(inherited) -framework CoreTelephony -framework AdSupport -framework SystemConfiguration -framework WebKit

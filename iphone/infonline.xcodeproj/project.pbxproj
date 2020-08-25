@@ -22,13 +22,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		24DD6CF91134B3F500162E58 /* TiInfonlineModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiInfonlineModule.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		24DD6CFA1134B3F500162E58 /* TiInfonlineModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiInfonlineModule.m */; };
 		24DE9E1111C5FE74003F90F6 /* TiInfonlineModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* TiInfonlineModuleAssets.h */; };
 		24DE9E1211C5FE74003F90F6 /* TiInfonlineModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* TiInfonlineModuleAssets.m */; };
+		3A4B276224ED1973001E54EC /* INFOnlineLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4B276124ED1973001E54EC /* INFOnlineLibrary.framework */; };
+		3A4B276924ED1F54001E54EC /* TiInfonlineEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B276724ED1F53001E54EC /* TiInfonlineEventProxy.m */; };
+		3A4B276A24ED1F54001E54EC /* TiInfonlineEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4B276824ED1F53001E54EC /* TiInfonlineEventProxy.h */; };
+		3A4B276E24ED20A2001E54EC /* TiInfonlineViewEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B276C24ED20A2001E54EC /* TiInfonlineViewEventProxy.m */; };
+		3A4B276F24ED20A2001E54EC /* TiInfonlineViewEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4B276D24ED20A2001E54EC /* TiInfonlineViewEventProxy.h */; };
+		3ACC4C5F24E92B49008B265F /* TiInfonlineModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACC4C5E24E92B49008B265F /* TiInfonlineModule.h */; };
 		AA747D9F0F9514B9006C5449 /* TiInfonline_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiInfonline_Prefix.pch */; };
-		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
-		D24E22C41F7995FC00E5FC40 /* INFOnlineLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E22C31F7995FC00E5FC40 /* INFOnlineLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,14 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24DD6CF71134B3F500162E58 /* TiInfonlineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineModule.h; path = /Users/sg/Documents/Appcelerator_Studio_Workspace/infonline/iphone/Classes/TiInfonlineModule.h; sourceTree = "<absolute>"; };
 		24DD6CF81134B3F500162E58 /* TiInfonlineModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfonlineModule.m; path = Classes/TiInfonlineModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		24DE9E0F11C5FE74003F90F6 /* TiInfonlineModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineModuleAssets.h; path = Classes/TiInfonlineModuleAssets.h; sourceTree = "<group>"; };
 		24DE9E1011C5FE74003F90F6 /* TiInfonlineModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfonlineModuleAssets.m; path = Classes/TiInfonlineModuleAssets.m; sourceTree = "<group>"; };
+		3A4B276124ED1973001E54EC /* INFOnlineLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = INFOnlineLibrary.framework; path = platform/INFOnlineLibrary.framework; sourceTree = "<group>"; };
+		3A4B276724ED1F53001E54EC /* TiInfonlineEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfonlineEventProxy.m; path = Classes/TiInfonlineEventProxy.m; sourceTree = "<group>"; };
+		3A4B276824ED1F53001E54EC /* TiInfonlineEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineEventProxy.h; path = Classes/TiInfonlineEventProxy.h; sourceTree = "<group>"; };
+		3A4B276C24ED20A2001E54EC /* TiInfonlineViewEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiInfonlineViewEventProxy.m; path = Classes/TiInfonlineViewEventProxy.m; sourceTree = "<group>"; };
+		3A4B276D24ED20A2001E54EC /* TiInfonlineViewEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineViewEventProxy.h; path = Classes/TiInfonlineViewEventProxy.h; sourceTree = "<group>"; };
+		3ACC4C5E24E92B49008B265F /* TiInfonlineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiInfonlineModule.h; path = Classes/TiInfonlineModule.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiInfonline_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiInfonline_Prefix.pch; sourceTree = SOURCE_ROOT; };
-		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D24E22C31F7995FC00E5FC40 /* INFOnlineLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = INFOnlineLibrary.framework; sourceTree = "<group>"; };
 		D276B2CB1F8290DC004C1436 /* INFOnlineLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = INFOnlineLibrary.bundle; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libti.infonline.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libti.infonline.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -59,8 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
-				D24E22C41F7995FC00E5FC40 /* INFOnlineLibrary.framework in Frameworks */,
+				3A4B276224ED1973001E54EC /* INFOnlineLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,8 +94,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D24E22C31F7995FC00E5FC40 /* INFOnlineLibrary.framework */,
-				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				3A4B276124ED1973001E54EC /* INFOnlineLibrary.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -100,8 +104,9 @@
 			children = (
 				24DE9E0F11C5FE74003F90F6 /* TiInfonlineModuleAssets.h */,
 				24DE9E1011C5FE74003F90F6 /* TiInfonlineModuleAssets.m */,
-				24DD6CF71134B3F500162E58 /* TiInfonlineModule.h */,
+				3ACC4C5E24E92B49008B265F /* TiInfonlineModule.h */,
 				24DD6CF81134B3F500162E58 /* TiInfonlineModule.m */,
+				3A4B276B24ED2083001E54EC /* Events */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -116,6 +121,33 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		3A4B276B24ED2083001E54EC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				3A4B277224ED2656001E54EC /* Ti Base Event */,
+				3A4B277024ED2198001E54EC /* View Event */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		3A4B277024ED2198001E54EC /* View Event */ = {
+			isa = PBXGroup;
+			children = (
+				3A4B276D24ED20A2001E54EC /* TiInfonlineViewEventProxy.h */,
+				3A4B276C24ED20A2001E54EC /* TiInfonlineViewEventProxy.m */,
+			);
+			name = "View Event";
+			sourceTree = "<group>";
+		};
+		3A4B277224ED2656001E54EC /* Ti Base Event */ = {
+			isa = PBXGroup;
+			children = (
+				3A4B276824ED1F53001E54EC /* TiInfonlineEventProxy.h */,
+				3A4B276724ED1F53001E54EC /* TiInfonlineEventProxy.m */,
+			);
+			name = "Ti Base Event";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -124,8 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA747D9F0F9514B9006C5449 /* TiInfonline_Prefix.pch in Headers */,
-				24DD6CF91134B3F500162E58 /* TiInfonlineModule.h in Headers */,
+				3ACC4C5F24E92B49008B265F /* TiInfonlineModule.h in Headers */,
 				24DE9E1111C5FE74003F90F6 /* TiInfonlineModuleAssets.h in Headers */,
+				3A4B276A24ED1F54001E54EC /* TiInfonlineEventProxy.h in Headers */,
+				3A4B276F24ED20A2001E54EC /* TiInfonlineViewEventProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,17 +189,15 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1150;
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "infonline" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
+				en,
+				Base,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* infonline */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
@@ -199,7 +231,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4B276924ED1F54001E54EC /* TiInfonlineEventProxy.m in Sources */,
 				24DD6CFA1134B3F500162E58 /* TiInfonlineModule.m in Sources */,
+				3A4B276E24ED20A2001E54EC /* TiInfonlineViewEventProxy.m in Sources */,
 				24DE9E1211C5FE74003F90F6 /* TiInfonlineModuleAssets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +260,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/platform",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -270,6 +305,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/platform",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
@@ -305,12 +341,20 @@
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -361,12 +405,20 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -406,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -417,9 +470,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PRODUCT_NAME = "Build & test";
 				ZERO_LINK = NO;
 			};
